@@ -31,6 +31,18 @@ export default function App() {
           onPress={submitHandler}
         />
       </View>
+        <View style={styles.productItems}>
+          {
+            myProducts.map((product, index) => {
+              return(
+                <Text key={index} style={styles.item} >
+                  {product}
+                </Text>
+              )
+            })
+          }
+        </View>
+
     </View>
   );
 }
@@ -50,5 +62,14 @@ const styles = StyleSheet.create({
     paddingLeft: 9,
     fontSize: 18,
     flexGrow: 1,
-  }
+  }, 
+  productItems: {
+    marginTop: 10,
+  },
+  item: {
+    backgroundColor: "#ffb6c1",
+    padding: 20,
+    fontSize: 17,
+    marginVertical: 6,
+  } //permet de mettre une marge sur les deux cotés en meme temp n'existe pas en css classique
 });
