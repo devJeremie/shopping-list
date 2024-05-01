@@ -5,6 +5,7 @@ import {
   FlatList,
 } from 'react-native';
 import React, { useState } from "react";
+import Products from './components/Products';
 
 export default function App() {
   //state pour Scrollview
@@ -31,29 +32,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput 
-          style={styles.textInput}
-          placeholder='Nouveau produit'
-          onChangeText={inputHandler} //permet de modifier la valeur de départ que vous avez mis dans le satet('' par défaut)
-          value={product}
-        />
-        <Button 
-          title='Valider'
-          onPress={submitHandler}
-        />
-      </View>
+      
 
       <FlatList  
       //sachant que l'on part sur une Flatlist vous n'etes pas oblige de preciser 
       //le key au niveau de l'élément parent
         data={myProducts}
         //le item sera tout les éléments que vous aurez au niveau de votre tableau
-        renderItem={({item}) => 
-          <Text style={styles.item} >
-          {item.name}
-          </Text>
-        }
+        renderItem={({item}) => <Products name={item.name} />}
       />
       
       {/* <ScrollView> 
@@ -90,13 +76,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flexGrow: 1,
   }, 
-  productItems: {
-    marginTop: 10,
-  },
-  item: {
-    backgroundColor: "#87cefa",
-    padding: 20,
-    fontSize: 17,
-    marginVertical: 6,
-  } //permet de mettre une marge sur les deux cotés en meme temp n'existe pas en css classique
 });
