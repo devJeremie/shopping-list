@@ -5,16 +5,14 @@ import {
   FlatList,
 } from 'react-native';
 import React, { useState } from "react";
+
+//import component
 import Products from './components/Products';
+import AddProduct from './components/AddProduct';
 
 export default function App() {
   //state pour Scrollview
-  const [product, setProduct] = useState("");
   const [myProducts, setMyProducts] = useState([]);
-
-  const inputHandler = (val) => { // input handler for product name text field
-    setProduct(val)
-  }
 
   //Méthode avec le ScrollView
   // const submitHandler = () => { //enregistre les new products dans l'array du state myproducts
@@ -23,7 +21,7 @@ export default function App() {
   // }
 
   //méthode avec FlatList
-  const submitHandler = () => { //enregistre les new products dans l'array du state myproducts
+  const submitHandler = (product) => { //enregistre les new products dans l'array du state myproducts
     const idString = Date.now().toString(); //on crée un identifiant unique à chaque produit en utilisant la date et des caractères aléatoires et affiche ce nouveau produit et affiche la nouvelle liste des produits 
     setMyProducts(currentMyProducts => [{key: idString, name: product }, ...currentMyProducts] ) //les produits existants et on les injectent dans un nouvel array
     setProduct('')
@@ -32,7 +30,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      
+      <AddProduct submitHandler={submitHandler} />
 
       <FlatList  
       //sachant que l'on part sur une Flatlist vous n'etes pas oblige de preciser 
@@ -61,19 +59,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-   padding:40,
-   paddingTop: 60
+    padding:40,
+    paddingTop: 60
   },
-  inputContainer: {
-    flexDirection: "row",
-    marginBottom: 9
-  },
-  textInput: {
-    borderColor: "gray",
-    borderWidth: 1,
-    padding: 5,
-    paddingLeft: 9,
-    fontSize: 18,
-    flexGrow: 1,
-  }, 
 });
