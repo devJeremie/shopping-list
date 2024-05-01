@@ -1,10 +1,13 @@
 import { 
   StyleSheet, Text,
-  View, TextInput, Button } from 'react-native';
+  View, TextInput,
+  Button, ScrollView,
+  FlatList,
+} from 'react-native';
 import React, { useState } from "react";
 
 export default function App() {
-
+  //state pour Scrollview
   const [product, setProduct] = useState("");
   const [myProducts, setMyProducts] = useState([]);
 
@@ -12,10 +15,19 @@ export default function App() {
     setProduct(val)
   }
 
+  //Méthode avec le ScrollView
+  // const submitHandler = () => { //enregistre les new products dans l'array du state myproducts
+  //   setMyProducts(currentMyProducts => [...currentMyProducts, product] ) //les produits existants et on les injectent dans un nouvel array
+  //   setProduct('')
+  // }
+
+  //méthode avec FlatList
   const submitHandler = () => { //enregistre les new products dans l'array du state myproducts
-    setMyProducts(currentMyProducts => [...currentMyProducts, product] ) //les produits existants et on les injectent dans un nouvel array
+    const idString = Date.now().toString(); //on crée un identifiant unique à chaque produit en utilisant la date et des caractères aléatoires et affiche ce nouveau produit et affiche la nouvelle liste des produits 
+    setMyProducts(currentMyProducts => [{key: idString, name: product }, ...currentMyProducts] ) //les produits existants et on les injectent dans un nouvel array
     setProduct('')
   }
+  
 
   return (
     <View style={styles.container}>
@@ -31,6 +43,20 @@ export default function App() {
           onPress={submitHandler}
         />
       </View>
+
+      <FlatList  
+      //sachant que l'on part sur une Flatlist vous n'etes pas oblige de preciser 
+      //le key au niveau de l'élément parent
+        data={myProducts}
+        //le item sera tout les éléments que vous aurez au niveau de votre tableau
+        renderItem={({item}) => 
+          <Text style={styles.item} >
+          {item.name}
+          </Text>
+        }
+      />
+      
+      {/* <ScrollView> 
         <View style={styles.productItems}>
           {
             myProducts.map((product, index) => {
@@ -42,7 +68,7 @@ export default function App() {
             })
           }
         </View>
-
+        </ScrollView> */}
     </View>
   );
 }
@@ -54,6 +80,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
+    marginBottom: 9
   },
   textInput: {
     borderColor: "gray",
@@ -67,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   item: {
-    backgroundColor: "#ffb6c1",
+    backgroundColor: "#87cefa",
     padding: 20,
     fontSize: 17,
     marginVertical: 6,
