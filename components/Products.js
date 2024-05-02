@@ -5,7 +5,7 @@ import {
     TouchableHighlight, Pressable,
   } from 'react-native';
  
-  const Products = ({name}) => {
+  const Products = ({name, deleteProduct, idString}) => {
     return (
       // <TouchableOpacity 
       //   activeOpacity={0.2}
@@ -17,7 +17,7 @@ import {
       //   underlayColor={"pink"}
       // >
       <Pressable
-      onPress={()=> console.log('cliqué')}
+      onPress={()=> deleteProduct(idString)}
       // style={({pressed}) => [
       //   {
       //     backgroundColor: pressed ? "#9c27b0" : "#673ab7"
