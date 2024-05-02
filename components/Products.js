@@ -1,14 +1,36 @@
 import React from "react";
 import { 
     StyleSheet, Text,
-    View, 
+    View, TouchableOpacity, 
+    TouchableHighlight, Pressable,
   } from 'react-native';
  
   const Products = ({name}) => {
     return (
+      // <TouchableOpacity 
+      //   activeOpacity={0.2}
+      //   onPress={()=> console.log('cliqué')}
+      // >
+      // <TouchableHighlight
+      //   activeOpacity={0.2}
+      //   onPress={()=> console.log('cliqué')}
+      //   underlayColor={"pink"}
+      // >
+      <Pressable
+      onPress={()=> console.log('cliqué')}
+      // style={({pressed}) => [
+      //   {
+      //     backgroundColor: pressed ? "#9c27b0" : "#673ab7"
+      //   }
+      // ]}
+      android_ripple={{color: '#9c27b0'}}
+      >
         <View style={styles.productItems} >
             <Text style={styles.item}>{name}</Text>
         </View>
+      </Pressable>
+      // </TouchableHighlight>
+      // </TouchableOpacity>
     )
   }
 

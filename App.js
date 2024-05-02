@@ -24,7 +24,6 @@ export default function App() {
   const submitHandler = (product) => { //enregistre les new products dans l'array du state myproducts
     const idString = Date.now().toString(); //on crée un identifiant unique à chaque produit en utilisant la date et des caractères aléatoires et affiche ce nouveau produit et affiche la nouvelle liste des produits 
     setMyProducts(currentMyProducts => [{key: idString, name: product }, ...currentMyProducts] ) //les produits existants et on les injectent dans un nouvel array
-    setProduct('')
   }
   
 

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { 
     StyleSheet, View, 
-    TextInput, Button
+    TextInput, Button, 
   } from 'react-native';
 
 const AddProduct = ({submitHandler}) => {
@@ -11,6 +11,11 @@ const AddProduct = ({submitHandler}) => {
     const inputHandler = (val) => { // input handler for product name text field
         setProduct(val)
       }
+    //permet de vider le state apres ajout d'un new product
+    const handleClick = () => {
+        submitHandler(product);
+        setProduct("")
+    }
 
     return (
         <View style={styles.inputContainer}>
@@ -22,7 +27,7 @@ const AddProduct = ({submitHandler}) => {
             />
             <Button 
             title='Valider'
-            onPress={() => submitHandler(product)}
+            onPress={handleClick}
             />
       </View>
     )
