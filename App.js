@@ -3,6 +3,7 @@ import {
   View, TextInput,
   Button, ScrollView,
   FlatList, Alert,
+  Modal, 
 } from 'react-native';
 import React, { useState } from "react";
 
@@ -13,6 +14,7 @@ import AddProduct from './components/AddProduct';
 export default function App() {
   //state pour Scrollview
   const [myProducts, setMyProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   //Méthode avec le ScrollView
   // const submitHandler = () => { //enregistre les new products dans l'array du state myproducts
@@ -26,21 +28,22 @@ export default function App() {
       const idString = Date.now().toString(); //on crée un identifiant unique à chaque produit en utilisant la date et des caractères aléatoires et affiche ce nouveau produit et affiche la nouvelle liste des produits 
       setMyProducts(currentMyProducts => [{key: idString, name: product }, ...currentMyProducts] ) //les produits existants et on les injectent dans un nouvel array
     } else {
-      Alert.alert("Désole", "Nombre de caractères insuffisant minimun 2 caractères",
-                  [
-                    { text: "Compris", 
-                      onPress : () => console.warn("Refusé")       
-                    },
-                    { text: `D'accord`,
-                      onPress : () => console.warn("Refusé")       
-                    },
-                    { text: "OK", 
-                      onPress : () => console.warn("Refusé")       
-                    },
+      setShowModal(true)
+      // Alert.alert("Désole", "Nombre de caractères insuffisant minimun 2 caractères",
+      //             [
+      //               { text: "Compris", 
+      //                 onPress : () => console.warn("Refusé")       
+      //               },
+      //               { text: `D'accord`,
+      //                 onPress : () => console.warn("Refusé")       
+      //               },
+      //               { text: "OK", 
+      //                 onPress : () => console.warn("Refusé")       
+      //               },
 
-                  ], 
-                { cancelable: true }
-              );
+      //             ], 
+      //           { cancelable: true }
+      //         );
     }
   }
   
@@ -52,6 +55,19 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Modal
+        visible={showModal}
+        onRequestClose={()=>setShowModal(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text>He You !!</Text>
+            </View>
+
+          </View>
+        </View>
+      </Modal>
       <AddProduct submitHandler={submitHandler} />
 
       <FlatList  
@@ -90,4 +106,27 @@ const styles = StyleSheet.create({
     padding:40,
     paddingTop: 60
   },
+  modalContainer: {
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:"rgba(0,0,0,0.2) ",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    width: "90%",
+    height: 250,
+    borderRadius: 15,
+    alignItems: "center",
+  },
+  modalHeader: {
+    backgroundColor: 'grey',
+    width: '100%',
+    padding: 16,
+    alignItems: 'center',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray' 
+  }
 });
