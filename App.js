@@ -3,7 +3,8 @@ import {
   View, TextInput,
   Button, ScrollView,
   FlatList, Alert,
-  Modal, 
+  Modal, Pressable,
+  Image,ImageBackground, 
 } from 'react-native';
 import React, { useState } from "react";
 
@@ -54,17 +55,36 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+    <ImageBackground 
+      style={styles.container}
+      // source={require('./assets/image/ciel.jpeg')}
+      source={require}
+    >
       <Modal
         visible={showModal}
         onRequestClose={()=>setShowModal(false)}
+        animationType='slide'
+        transparent
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text>He You !!</Text>
+              <Text style={styles.modalHeaderText}>Oups il y a une erreur!!</Text>
             </View>
-
+            <View style={styles.modalBody}>
+              <Image 
+                source={require('./assets/image/red circle_cross.png')}
+              />
+              <Text style={styles.modalBodyText}>Merci de noter plus d'un seul caractère</Text>
+            </View>
+            <View style={styles.modalFooter}>
+              <Pressable 
+                style={styles.pressableBtnModal} 
+                onPress={() => setShowModal(false)}
+                >
+              <Text style={styles.modalBtn}>D'accord</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
@@ -97,7 +117,7 @@ export default function App() {
           }
         </View>
         </ScrollView> */}
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -115,12 +135,11 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: "#fff",
     width: "90%",
-    height: 250,
+    height: 300,
     borderRadius: 15,
     alignItems: "center",
   },
   modalHeader: {
-    backgroundColor: 'grey',
     width: '100%',
     padding: 16,
     alignItems: 'center',
@@ -128,5 +147,34 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomWidth: 1,
     borderBottomColor: 'lightgray' 
+  },
+  modalHeaderText: {
+    color: 'grey',
+    fontSize: 17
+  },
+  modalBody: {
+    flex: 1,
+    width: "100%",
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalBodyText: {
+    fontSize: 17,
+  },
+  modalFooter: {
+    width: '100%',
+  },
+  pressableBtnModal: {
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    backgroundColor: 'lightseagreen',
+  },
+  modalBtn: {
+    fontSize: 17,
+    color: '#fff',
+    textAlign: 'center',
+    padding: 16
   }
 });

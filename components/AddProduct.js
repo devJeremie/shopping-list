@@ -25,10 +25,15 @@ const AddProduct = ({submitHandler}) => {
             onChangeText={inputHandler} //permet de modifier la valeur de départ que vous avez mis dans le satet('' par défaut)
             value={product}
             />
-            <Button 
-            title='Valider'
-            onPress={handleClick}
-            />
+            <View style={styles.btnContainer}>
+                <View style={styles.btnBlue}>
+                    <Button 
+                        title='Valider'
+                        onPress={handleClick}
+                    />
+                </View>
+            </View>
+            
       </View>
     )
 }
