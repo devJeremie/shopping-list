@@ -16,6 +16,10 @@ const AddProduct = ({submitHandler}) => {
         submitHandler(product);
         setProduct("")
     }
+    //permet de vider l'input aprés une erreur de saisie
+    const handleCancelledClick = () => {
+        setProduct("") // réinitialise la valeur du state à une chaîne vide
+    }
 
     return (
         <View style={styles.inputContainer}>
@@ -32,6 +36,13 @@ const AddProduct = ({submitHandler}) => {
                         onPress={handleClick}
                     />
                 </View>
+                <View style={styles.btnTomato}>
+                    <Button 
+                        title='Annuler'
+                        onPress={handleCancelledClick}
+                        color='#ff6347'
+                    />
+                </View>
             </View>
             
       </View>
@@ -40,17 +51,40 @@ const AddProduct = ({submitHandler}) => {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        flexDirection: "row",
-        marginBottom: 9
+        // flexDirection: "row",
+        // marginBottom: 9
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     textInput: {
+        // borderColor: "gray",
+        // borderWidth: 1,
+        // padding: 5,
+        // paddingLeft: 9,
+        // fontSize: 18,
+        // flexGrow: 1,
+        height: 40,
+        width: '60%',
         borderColor: "gray",
         borderWidth: 1,
-        padding: 5,
-        paddingLeft: 9,
+        marginBottom: 10,
+        paddingHorizontal: 10,
         fontSize: 18,
-        flexGrow: 1,
     }, 
+    btnContainer: {
+        flexDirection: 'row', // modifier le flexDirection en 'column'
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btnBlue: {
+        marginHorizontal: 10,
+        width: '45%'
+    },
+    btnTomato: {
+        marginHorizontal: 10,
+        width: '45%'
+    },
 })
 
 export default AddProduct; 

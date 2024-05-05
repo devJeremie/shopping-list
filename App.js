@@ -57,8 +57,7 @@ export default function App() {
   return (
     <ImageBackground 
       style={styles.container}
-      // source={require('./assets/image/ciel.jpeg')}
-      source={require}
+      source={require('./assets/image/ciel.jpeg')}
     >
       <Modal
         visible={showModal}
@@ -124,7 +123,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     padding:40,
-    paddingTop: 60
+    paddingTop: 60,
+    height: '100%'//rempli le container avec l'image en background
   },
   modalContainer: {
     flex:1,

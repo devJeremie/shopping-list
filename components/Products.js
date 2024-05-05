@@ -43,6 +43,7 @@ import {
       padding: 20,
       fontSize: 17,
       marginVertical: 6,
+      borderRadius: 6
     } //permet de mettre une marge sur les deux cotés en meme temp n'existe pas en css classique
   });
 
