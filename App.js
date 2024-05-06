@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
   container: {
     padding:40,
     paddingTop: 60,
-    height: '100%'//rempli le container avec l'image en background
+    height: '100%',//rempli le container avec l'image en background
+    // width: '100%' //en mode web sinon on commente
   },
   modalContainer: {
     flex:1,
