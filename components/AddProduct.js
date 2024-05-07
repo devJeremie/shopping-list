@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import { 
     StyleSheet, View, 
-    TextInput, Button, 
+    TextInput, 
   } from 'react-native';
+import ButtonComponent from "./ButtonComponent";
+import Colors from '../constants/colors'
 
 const AddProduct = ({submitHandler}) => {
 
@@ -30,19 +32,19 @@ const AddProduct = ({submitHandler}) => {
             value={product}
             />
             <View style={styles.btnContainer}>
-                <View style={styles.btnBlue}>
-                    <Button 
-                        title='Valider'
-                        onPress={handleClick}
-                    />
-                </View>
-                <View style={styles.btnTomato}>
-                    <Button 
-                        title='Annuler'
-                        onPress={handleCancelledClick}
-                        color='#ff6347'
-                    />
-                </View>
+                <ButtonComponent 
+                    onPressHandler={handleClick}
+                    style={styles.btnBlue}
+                >
+                    Valider
+                </ButtonComponent>
+                <ButtonComponent 
+                    onPressHandler={handleCancelledClick}
+                    btnTitle= 'Annuler'
+                    style={styles.btnTomato}
+                >
+                    Annuler
+                </ButtonComponent>
             </View>
             
       </View>
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 20
     },
     textInput: {
         // borderColor: "gray",
@@ -65,25 +68,29 @@ const styles = StyleSheet.create({
         // fontSize: 18,
         // flexGrow: 1,
         height: 40,
-        width: '60%',
-        borderColor: "gray",
+        width: '100%',
+        borderColor: Colors.gray,
         borderWidth: 1,
-        marginBottom: 10,
+        marginBottom: 20,
         paddingHorizontal: 10,
         fontSize: 18,
     }, 
     btnContainer: {
         flexDirection: 'row', // modifier le flexDirection en 'column'
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 20
     },
     btnBlue: {
-        marginHorizontal: 10,
-        width: '45%'
+        marginHorizontal: 10, 
+        backgroundColor: "seagreen",
+        width: 150,
+        borderRadius: 6
     },
     btnTomato: {
         marginHorizontal: 10,
-        width: '45%'
+        backgroundColor: "tomato",
+        width: 150,
+        borderRadius: 6
     },
 })
 

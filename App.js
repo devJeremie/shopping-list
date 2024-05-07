@@ -11,6 +11,8 @@ import React, { useState } from "react";
 //import component
 import Products from './components/Products';
 import AddProduct from './components/AddProduct';
+import Header from './components/Header';
+import Colors from './constants/colors';
 
 export default function App() {
   //state pour Scrollview
@@ -56,76 +58,79 @@ export default function App() {
 
   return (
     <ImageBackground 
-      style={styles.container}
+      style={styles.bgImage}
       source={require('./assets/image/ciel.jpeg')}
     >
-      <Modal
-        visible={showModal}
-        onRequestClose={()=>setShowModal(false)}
-        animationType='slide'
-        transparent
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
-              <Text style={styles.modalHeaderText}>Oups il y a une erreur!!</Text>
-            </View>
-            <View style={styles.modalBody}>
-              <Image 
-                source={require('./assets/image/red circle_cross.png')}
-              />
-              <Text style={styles.modalBodyText}>Merci de noter plus d'un seul caractère</Text>
-            </View>
-            <View style={styles.modalFooter}>
-              <Pressable 
-                style={styles.pressableBtnModal} 
-                onPress={() => setShowModal(false)}
-                >
-              <Text style={styles.modalBtn}>D'accord</Text>
-              </Pressable>
+      <Header />
+      <View style={styles.container}>
+        <Modal
+          visible={showModal}
+          onRequestClose={()=>setShowModal(false)}
+          animationType='slide'
+          transparent
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalHeaderText}>Oups il y a une erreur!!</Text>
+              </View>
+              <View style={styles.modalBody}>
+                <Image 
+                  source={require('./assets/image/red circle_cross.png')}
+                />
+                <Text style={styles.modalBodyText}>Merci de noter plus d'un seul caractère</Text>
+              </View>
+              <View style={styles.modalFooter}>
+                <Pressable 
+                  style={styles.pressableBtnModal} 
+                  onPress={() => setShowModal(false)}
+                  >
+                <Text style={styles.modalBtn}>D'accord</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
-      </Modal>
-      <AddProduct submitHandler={submitHandler} />
+        </Modal>
+        <AddProduct submitHandler={submitHandler} />
 
-      <FlatList  
-      //sachant que l'on part sur une Flatlist vous n'etes pas oblige de preciser 
-      //le key au niveau de l'élément parent
-        data={myProducts}
-        //le item sera tout les éléments que vous aurez au niveau de votre tableau
-        renderItem={({item}) => (
-          <Products 
-          name={item.name}
-          idString={item.key}
-          deleteProduct={deleteProduct}
-          />
-        )}
-      />
-      
-      {/* <ScrollView> 
-        <View style={styles.productItems}>
-          {
-            myProducts.map((product, index) => {
-              return(
-                <Text key={index} style={styles.item} >
-                  {product}
-                </Text>
-              )
-            })
-          }
-        </View>
-        </ScrollView> */}
+        <FlatList  
+        //sachant que l'on part sur une Flatlist vous n'etes pas oblige de preciser 
+        //le key au niveau de l'élément parent
+          data={myProducts}
+          //le item sera tout les éléments que vous aurez au niveau de votre tableau
+          renderItem={({item}) => (
+            <Products 
+            name={item.name}
+            idString={item.key}
+            deleteProduct={deleteProduct}
+            />
+          )}
+        />
+        
+        {/* <ScrollView> 
+          <View style={styles.productItems}>
+            {
+              myProducts.map((product, index) => {
+                return(
+                  <Text key={index} style={styles.item} >
+                    {product}
+                  </Text>
+                )
+              })
+            }
+          </View>
+          </ScrollView> */}
+      </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     padding:40,
-    paddingTop: 60,
+    // paddingTop: 60,
     height: '100%',//rempli le container avec l'image en background
-    // width: '100%' //en mode web sinon on commente
+    //width: '100%' //en mode web sinon on commente
   },
   modalContainer: {
     flex:1,
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor:"rgba(0,0,0,0.2) ",
   },
   modalContent: {
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     width: "90%",
     height: 300,
     borderRadius: 15,
@@ -147,10 +152,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray' 
+    borderBottomColor: Colors.secondary ,
   },
   modalHeaderText: {
-    color: 'grey',
+    color: Colors.gray,
     fontSize: 17
   },
   modalBody: {
@@ -170,12 +175,15 @@ const styles = StyleSheet.create({
   pressableBtnModal: {
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
-    backgroundColor: 'lightseagreen',
+    backgroundColor: Colors.successSea,
   },
   modalBtn: {
     fontSize: 17,
-    color: '#fff',
+    color: Colors.white,
     textAlign: 'center',
     padding: 16
+  },
+  bgImage: {
+    flex: 1
   }
 });

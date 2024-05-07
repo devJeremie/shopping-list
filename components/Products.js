@@ -4,6 +4,7 @@ import {
     View, TouchableOpacity, 
     TouchableHighlight, Pressable,
   } from 'react-native';
+  import Colors from '../constants/colors'
  
   const Products = ({name, deleteProduct, idString}) => {
     return (
@@ -39,7 +40,7 @@ import {
       marginTop: 10,
     },
     item: {
-      backgroundColor: "#87cefa",
+      backgroundColor: Colors.SkyBlue,
       padding: 20,
       fontSize: 17,
       marginVertical: 6,

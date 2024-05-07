@@ -1,21 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { 
+  Pressable, StyleSheet, 
+  Text, TouchableOpacity, 
+  View 
+} from 'react-native'
 import React from 'react'
+import Colors from '../constants/colors'
 
-const ButtonComponent = (props) => {
+const ButtonComponent = ({onPressHandler, style, children}) => {
   return (
-    <View style={styles.btn}>
-      <Text style={styles.btnText}>{props.btnTitle}</Text>
-    </View>
+    <TouchableOpacity
+      activeOpacity={0.6}
+      onPress={onPressHandler}
+    >
+      <View style={{...styles.btn, ...style}}>
+        <Text style={styles.btnText}>{children}</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
     btn: {
-        backgroundColor: 'grey',
+        backgroundColor: Colors.gray,
         padding: 9,
     },
     btnText: {
-        color: '#fff',
+        color: Colors.white,
         textAlign: 'center',
         fontSize: 17,
     }
