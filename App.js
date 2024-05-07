@@ -7,6 +7,8 @@ import {
   Image,ImageBackground, 
 } from 'react-native';
 import React, { useState } from "react";
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 //import component
 import Products from './components/Products';
@@ -14,10 +16,13 @@ import AddProduct from './components/AddProduct';
 import Header from './components/Header';
 import Colors from './constants/colors';
 
+
+
 export default function App() {
-  //state pour Scrollview
+  
   const [myProducts, setMyProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  
 
   //Méthode avec le ScrollView
   // const submitHandler = () => { //enregistre les new products dans l'array du state myproducts
