@@ -7,14 +7,29 @@ import {
   Image,ImageBackground, 
 } from 'react-native';
 import React, { useState } from "react";
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
+// import * as Font from 'expo-font';
+import {
+  useFonts,
+  ShantellSans_300Light,
+  ShantellSans_400Regular,
+  ShantellSans_500Medium,
+  ShantellSans_600SemiBold,
+  ShantellSans_700Bold,
+  ShantellSans_800ExtraBold,
+  ShantellSans_300Light_Italic,
+  ShantellSans_400Regular_Italic,
+  ShantellSans_500Medium_Italic,
+  ShantellSans_600SemiBold_Italic,
+  ShantellSans_700Bold_Italic,
+  ShantellSans_800ExtraBold_Italic,
+} from '@expo-google-fonts/shantell-sans';
 
 //import component
 import Products from './components/Products';
 import AddProduct from './components/AddProduct';
 import Header from './components/Header';
 import Colors from './constants/colors';
+import AppLoading from 'expo-app-loading';
 
 
 
@@ -22,7 +37,30 @@ export default function App() {
   
   const [myProducts, setMyProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  // const [fontsLoaded, setFontsLoaded] = useState(false); //state pour le chargement de la font
   
+  const [fontsLoaded, error] = useFonts({
+    Shantells300 : ShantellSans_300Light,
+    ShantellSans_400Regular,
+    ShantellSans_500Medium,
+    ShantellSans_600SemiBold,
+    ShantellSans_700Bold,
+    ShantellSans_800ExtraBold,
+    ShantellSans_300Light_Italic,
+    ShantellSans_400Regular_Italic,
+    ShantellSans_500Medium_Italic,
+    ShantellSans_600SemiBold_Italic,
+    ShantellSans_700Bold_Italic,
+    ShantellSans_800ExtraBold_Italic,
+  })
+
+//Gestion du chargement de la font
+if(!fontsLoaded) {
+  return (
+    <AppLoading />
+  )
+}
+
 
   //Méthode avec le ScrollView
   // const submitHandler = () => { //enregistre les new products dans l'array du state myproducts

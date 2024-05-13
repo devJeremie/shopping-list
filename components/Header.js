@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
         color: Colors.white,
         fontSize: 24,
         padding: 9,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'Shantells300'
     }
 })
 
