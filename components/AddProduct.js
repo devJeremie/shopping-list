@@ -28,6 +28,7 @@ const AddProduct = ({submitHandler}) => {
             <TextInput 
             style={styles.textInput}
             placeholder='Nouveau produit'
+            placeholderTextColor="#ffffff"
             onChangeText={inputHandler} //permet de modifier la valeur de départ que vous avez mis dans le state('' par défaut)
             value={product}
             />
