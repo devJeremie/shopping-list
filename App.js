@@ -41,7 +41,7 @@ export default function App() {
   
   const [fontsLoaded, error] = useFonts({
     Shantells300 : ShantellSans_300Light,
-    ShantellSans_400Regular,
+    Shantells400 :ShantellSans_400Regular,
     ShantellSans_500Medium,
     ShantellSans_600SemiBold,
     ShantellSans_700Bold,
@@ -227,6 +227,8 @@ const styles = StyleSheet.create({
     padding: 16
   },
   bgImage: {
-    flex: 1
+    flex: 1,
+    width: '100%',
+    height: '100%'
   }
 });
